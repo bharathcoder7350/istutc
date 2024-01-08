@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time</title>
+    <style>
+        html, body{
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            overflow: hidden;
+            font-family: 'Inter';
+            color: white;
+        }
+        .center{
+            padding: 1em;
+            line-height: 0;
+            margin: 10px;
+            border: 5px solid white;
+            border-radius: 20px;
+        }
+        #Time{
+            color: white;
+            font-family: 'Inter';
+            font-size: 15vw;
+        }
+        #utctime{
+            color: white;
+            font-family: 'Inter';
+            font-size: 15vw;
+        }
+        main{
+            display: flex;
+            height: 100vh;
+            align-items: center;
+            justify-content: center;
+        }
+        .title{
+            padding: 1em;
+            border-radius: 10px;
+            background-color: #444444;
+            width: fit-content;
+        }
+    </style>
+</head>
+<body>
+    
+    <main>
+        <div class="center">
+            <h1 id="Time">IST</h1>
+        </div>
+        <div class="center">
+            <h1 id="utctime">UTC</h1>
+        </div>
+    </main>
+
+    <script>
+        setInterval(() => {
+            const a = new Date()
+            let hours = a.getHours()
+            let mins = a.getMinutes()
+            
+            if(hours.toString().length<2){
+                hours = '0'+hours
+            }
+            if(mins.toString().length<2){
+                mins = '0'+mins
+            }
+            const html = `${hours}:${mins}`
+            document.getElementById('Time').innerText = html
+            }, 1000);
+
+
+
+        setInterval(() => {
+            const b = new Date()
+            let utchours = b.getUTCHours()
+            let utcmins = b.getUTCMinutes()
+
+            if(utchours.toString().length<2){
+                utchours = '0'+utchours
+            }
+            if(utcmins.toString().length<2){
+                utcmins = '0'+utcmins
+            }
+            const html = `${utchours}:${utcmins}`
+            document.getElementById('utctime').innerText = html
+            }, 2000);
+    </script>
+</body>
+</html>
